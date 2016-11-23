@@ -10,7 +10,7 @@ class EventWinner extends Model
     protected $table = "event_winner";
 
     protected $fillable = [
-        'player_id', 'event_id', 'rank'
+        'user_id', 'event_id', 'rank'
     ];
 
     public function event() {

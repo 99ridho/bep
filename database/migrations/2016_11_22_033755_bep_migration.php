@@ -31,25 +31,47 @@ class BepMigration extends Migration
             $tbl->timestamps();
 
             $tbl->foreign('type_id')
-                ->references('id')
-                ->on('type');
+            ->references('id')
+            ->on('type');
         });
+
+        // Schema::create('team', function (Blueprint $tbl) {
+        //     $tbl->increments('id');
+        //     $tbl->integer('user_id')->unsigned();
+        //     $tbl->string('name');
+        //     $tbl->string('description');
+        //     $tbl->timestamps();
+
+        //     $tbl->foreign('user_id')
+        //         ->references('id')
+        //         ->on('user');
+        // });
 
         Schema::create('team', function (Blueprint $tbl) {
             $tbl->increments('id');
-            $tbl->integer('user_id')->unsigned();
             $tbl->string('name');
             $tbl->string('description');
             $tbl->timestamps();
+        });
+
+        Schema::create('team_member', function (Blueprint $tbl) {
+            $tbl->increments('id');
+            $tbl->integer('team_id')->unsigned();
+            $tbl->integer('user_id')->unsigned();
+            $tbl->timestamps();
 
             $tbl->foreign('user_id')
-                ->references('id')
-                ->on('user');
+            ->references('id')
+            ->on('user');
+
+            $tbl->foreign('team_id')
+            ->references('id')
+            ->on('team');
         });
 
         Schema::create('event', function (Blueprint $tbl) {
             $tbl->increments('id');
-            $tbl->integer('organizer_id')->unsigned();
+            $tbl->integer('user_id')->unsigned();
             $tbl->string('name');
             $tbl->string('description');
             $tbl->dateTime('start_date');
@@ -57,9 +79,9 @@ class BepMigration extends Migration
             $tbl->integer('max_participant')->unsigned();
             $tbl->timestamps();
 
-            $tbl->foreign('organizer_id')
-                ->references('id')
-                ->on('user');
+            $tbl->foreign('user_id')
+            ->references('id')
+            ->on('user');
         });
 
         Schema::create('event_attendee', function (Blueprint $tbl) {
@@ -69,28 +91,28 @@ class BepMigration extends Migration
             $tbl->timestamps();
 
             $tbl->foreign('user_id')
-                ->references('id')
-                ->on('user');
+            ->references('id')
+            ->on('user');
 
             $tbl->foreign('event_id')
-                ->references('id')
-                ->on('event');
+            ->references('id')
+            ->on('event');
         });
 
         Schema::create('event_winner', function (Blueprint $tbl) {
             $tbl->increments('id');
-            $tbl->integer('player_id')->unsigned();
+            $tbl->integer('user_id')->unsigned();
             $tbl->integer('event_id')->unsigned();
             $tbl->string('rank');
             $tbl->timestamps();
 
-            $tbl->foreign('player_id')
-                ->references('id')
-                ->on('user');
+            $tbl->foreign('user_id')
+            ->references('id')
+            ->on('user');
 
             $tbl->foreign('event_id')
-                ->references('id')
-                ->on('event');
+            ->references('id')
+            ->on('event');
         });
 
         Schema::create('event_rundown', function (Blueprint $tbl) {
@@ -103,8 +125,8 @@ class BepMigration extends Migration
             $tbl->timestamps();
 
             $tbl->foreign('event_id')
-                ->references('id')
-                ->on('event');
+            ->references('id')
+            ->on('event');
         });
 
         Schema::create('comment', function (Blueprint $tbl) {
@@ -115,12 +137,12 @@ class BepMigration extends Migration
             $tbl->timestamps();
 
             $tbl->foreign('user_id')
-                ->references('id')
-                ->on('user');
+            ->references('id')
+            ->on('user');
 
             $tbl->foreign('event_id')
-                ->references('id')
-                ->on('event');
+            ->references('id')
+            ->on('event');
         });
 
         Schema::create('rating', function (Blueprint $tbl) {
@@ -131,12 +153,12 @@ class BepMigration extends Migration
             $tbl->timestamps();
 
             $tbl->foreign('user_id')
-                ->references('id')
-                ->on('user');
+            ->references('id')
+            ->on('user');
 
             $tbl->foreign('event_id')
-                ->references('id')
-                ->on('event');
+            ->references('id')
+            ->on('event');
         });
     }
 

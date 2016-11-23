@@ -9,11 +9,11 @@ class Event extends Model
     protected $table = "event";
 
     protected $fillable = [
-        'organizer_id', 'name', 'description', 'start_date', 'end_date', 'max_participant'
+        'user_id', 'name', 'description', 'start_date', 'end_date', 'max_participant'
     ];
 
     public function organizer() {
-        return $this->belongsTo('user');
+        return $this->belongsTo(User::class);
     }
 
     public function attendees() {

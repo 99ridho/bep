@@ -12,7 +12,7 @@ class Team extends Model
         'name', 'description'
     ];
 
-    public function players() {
-        return $this->hasMany(User::class);
+    public function athletes() {
+    	return $this->hasMany(TeamAthlete::class);
     }
 }

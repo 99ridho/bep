@@ -1,13 +1,16 @@
 <?php
 
 namespace App;
-
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
-
-class User extends Authenticatable
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+    use Authenticatable, Authorizable, CanResetPassword;
 
     protected $table = "user";
 
@@ -31,16 +34,12 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at'];
 
-    public function team() {
-        return $this->belongsTo(Team::class);
-    }
-
     public function type() {
         return $this->belongsTo(Type::class);
     }
 
     public function events() {
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Event::class);
     }
 
     public function comments() {

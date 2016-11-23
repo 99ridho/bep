@@ -13,6 +13,6 @@ class EventAttendee extends Model
     ];
 
     protected function event() {
-        return $this->belongsTo('event');
+        return $this->belongsTo(Event::class);
     }
 }
