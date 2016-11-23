@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/login', ['uses' => 'GuestController@login', 'as' => 'login']);
+Route::get('/register', ['uses' => 'GuestController@register', 'as' => 'register']);
+
+Route::post('auth/login', ['uses' => 'AuthController@login', 'as' => 'auth_login']);
+Route::post('auth/register', ['uses' => 'AuthController@register', 'as' => 'auth_register']);
+Route::get('auth/logout', ['uses' => 'AuthController@logout', 'as'=>'auth_logout']);
