@@ -21,7 +21,7 @@ class ProfileController extends Controller
             } else if ($user->type->id == 2) {
                 return view('profile/team', ['data' => $user, 'status' => 'found']);
             } else if ($user->type->id == 4) {
-                return view('profile/penyelenggara', ['data' => $user, 'status' => 'found']);
+                return view('profile/organizer', ['data' => $user, 'status' => 'found']);
             }
         }
     }

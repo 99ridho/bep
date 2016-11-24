@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 Route::get('/login', ['uses' => 'GuestController@login', 'as' => 'login']);
 Route::get('/register', ['uses' => 'GuestController@register', 'as' => 'register']);
@@ -29,5 +27,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('change_profile', ['uses' => 'ProfileController@changeProfile', 'as' => 'user_change_profile']);
     Route::post('save_profile', ['uses' => 'ProfileController@saveProfile', 'as' => 'user_save_profile']);
     Route::post('auth/change_password', ['uses' => 'AuthController@changePassword', 'as' => 'auth_change_password']);
+
+    Route::group(['middleware' => 'organizer', 'namespace' => 'Organizer'], function(){
+       Route::get('manage_event', ['uses' => 'EventController@manage', 'as' => 'organizer_manage_event']);
+        Route::get('manage_event/add', ['uses' => 'EventController@indexAddEvent', 'as' => 'organizer_add_event']);
+        Route::post('manage_event/save', ['uses' => 'EventController@addEvent', 'as' => 'organizer_save_new_event']);
+        Route::get('manage_event/delete/{id}', ['uses' => 'EventController@deleteEvent', 'as' => 'organizer_delete_event']);
+    });
 });
 

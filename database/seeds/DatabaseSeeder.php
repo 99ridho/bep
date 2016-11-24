@@ -16,6 +16,15 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(UserTableSeeder::class);
 
+        $type = [
+            ['type' => 'Admin'],
+            ['type' => 'Team'],
+            ['type' => 'Athlete'],
+            ['type' => 'Organizer']
+        ];
+
+        DB::table('type')->insert($type);
+
         Model::reguard();
     }
 }

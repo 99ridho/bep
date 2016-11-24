@@ -14,8 +14,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="#">Events</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="#">All Events</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <!--<li class="dropdown">
