@@ -10,9 +10,17 @@
     <title>BEP</title>
 </head>
 <body>
-@include('headers.header-guest')
+@include('headers.guest')
 <div class="container-fluid">
     <div class="row" style="margin-top: 80px">
+        <div class="col-md-offset-3 col-md-6">
+            @if(Session::has('status'))
+                <div class="alert alert-{{Session::get('status')}}" role="alert">
+                    <strong>{{Session::get('title')}}</strong><br/>
+                    <h5>{!! Session::get('message') !!}</h5>
+                </div>
+            @endif
+        </div>
         <div class="col-md-offset-3 col-md-6">
             <div class="row">
                 <div class="panel panel-default">

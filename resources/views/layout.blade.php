@@ -10,7 +10,15 @@
     <title>BEP</title>
 </head>
 <body>
-    @include('headers.header-guest')
+    @if(!Auth::check())
+        @include('headers.guest')
+    @else
+        @if(auth()->user()->type->id == 2)
+            @include('headers.team')
+        @elseif(auth()->user()->type->id == 3)
+            @include('headers.athlete')
+        @endif
+    @endif
     <div class="container-fluid">
         <div class="row" style="margin-top: 80px">
             <div class="col-md-offset-1 col-md-10">

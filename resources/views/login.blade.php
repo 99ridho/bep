@@ -10,7 +10,7 @@
 	<title>BEP</title>
 </head>
 <body>
-@include('headers.header-guest')
+@include('headers.guest')
 <div class="container-fluid">
 	<div class="row" style="margin-top: 80px">
         <div class="col-md-offset-3 col-md-6">

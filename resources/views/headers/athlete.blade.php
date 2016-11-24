@@ -15,8 +15,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="{{ route('user_profile', [auth()->user()->username]) }}">Profile</a></li>
+                <li><a href="{{ route('auth_logout') }}">Logout</a></li>
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">

@@ -24,6 +24,8 @@ class AuthController extends Controller
                     'message' => 'Username or Password invalid'
                 ]);
         }
+
+        return redirect('/');
     }
 
     public function register(Request $r) {
