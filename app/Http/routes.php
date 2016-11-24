@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('manage_event/add', ['uses' => 'EventController@indexAddEvent', 'as' => 'organizer_add_event']);
         Route::post('manage_event/save', ['uses' => 'EventController@addEvent', 'as' => 'organizer_save_new_event']);
         Route::get('manage_event/delete/{id}', ['uses' => 'EventController@deleteEvent', 'as' => 'organizer_delete_event']);
+
+        Route::get('manage_event/event/{id}/add_rundown', ['uses' => 'EventController@indexAddRundown', 'as' => 'organizer_add_rundown_event']);
+        Route::post('manage_event/event/{id}/save_rundown', ['uses' => 'EventController@inputEventRundown', 'as' => 'organizer_save_new_rundown_event']);
     });
 });
 
