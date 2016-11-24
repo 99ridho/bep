@@ -12,47 +12,53 @@
                     <h3 class="panel-title">Profile</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ $data->username }}" disabled>
-                            </div>
-                        </div>
+                    <div class="col-md-3">
+                        <img src="{{ url('ava-default.jpg') }}" class="img-responsive" alt="Responsive image">
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $data->email }}" disabled>
+                    <div class="col-md-9">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                        <input type="text" class="form-control" placeholder="Username" name="username" value="{{ $data->username }}" disabled>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $data->name }}" disabled>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                        <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $data->email }}" disabled>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-                                <input type="text" class="form-control" placeholder="Type" name="type" value="{{ $data->type->type }}" disabled>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                        <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $data->name }}" disabled>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
+                                        <input type="text" class="form-control" placeholder="Type" name="type" value="{{ $data->type->type }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
                 @if(Auth::check())
                     @if(auth()->user()->username == $data->username)
                         <div class="panel-footer clearfix">
                             <div class="btn-group pull-right">
                                 <div class="pull-right">
-                                    <a class="btn btn-success">Change Profile</a>
+                                    <a class="btn btn-success" href="{{ route('user_change_profile') }}">Change Profile</a>
+                                    <a class="btn btn-success" href="{{route('user_change_password')}}">Change Password</a>
                                 </div>
                             </div>
                         </div>

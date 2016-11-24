@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -52,5 +53,27 @@ class AuthController extends Controller
     public function logout() {
         auth()->logout();
         return redirect()->route('login');
+    }
+
+    public function changePassword(Request $r) {
+        $old = $r->input('old_password');
+        $p1 = $r->input('password');
+        $p2 = $r->input('repeat_password');
+
+        if(!Hash::check($old, auth()->user()->password)){
+            return redirect()->route('user_change_password')
+                ->with(['status' => 'danger', 'title'=>'Whoops!!', 'message' => 'Failed to change profile. Old password not same!!!']);
+        }
+
+        if($p2 !== $p1){
+            return redirect()->route('user_change_password')
+                ->with(['status' => 'danger', 'title'=>'Whoops!!', 'message' => 'New password not same!!!']);
+        }
+
+        auth()->user()->password = bcrypt($p1);
+        auth()->user()->save();
+
+        return redirect()->route('user_change_password')
+            ->with(['status' => 'success', 'title'=>'Success!!', 'message' => 'Success to change password!!!']);
     }
 }

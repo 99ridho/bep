@@ -17,6 +17,8 @@
             @include('headers.team')
         @elseif(auth()->user()->type->id == 3)
             @include('headers.athlete')
+        @elseif(auth()->user()->type->id == 4)
+            @include('headers.penyelenggara')
         @endif
     @endif
     <div class="container-fluid">
