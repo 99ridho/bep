@@ -7,6 +7,7 @@
             <h5>{!! Session::get('message') !!}</h5>
         </div>
     @endif
+    @include('validation-errors')
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Add Rundown</h3>

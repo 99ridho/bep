@@ -30,8 +30,19 @@ class AuthController extends Controller
     }
 
     public function register(Request $r) {
+        $this->validate($r, [
+            'username' => 'required',
+            'password' => 'required',
+            'email' => 'required|email',
+            'name' => 'required',
+            'type_id' => 'required'
+        ]);
+
         $cek = User::where('username', $r->input('username'))->count();
         if ($cek >= 1) return redirect()->route('register')->with(['status' => 'danger','title'=>'Error!!!', 'message' => 'Username has been registered']);
+
+        if ($r->input('type') == -1)
+            return redirect()->route('register')->with(['status' => 'danger','title'=>'Error!!!', 'message' => 'Error!!']);
 
         $new_user = User::create([
             'username' => $r->input('username'),

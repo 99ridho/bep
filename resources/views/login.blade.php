@@ -20,6 +20,7 @@
                     <h5>{!! Session::get('message') !!}</h5>
                 </div>
             @endif
+			@include('validation-errors')
         </div>
 		<div class="col-md-offset-3 col-md-6">
 			<div class="row">

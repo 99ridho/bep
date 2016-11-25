@@ -52,6 +52,14 @@ class EventController extends Controller
     /* -- POST -- */
 
     public function addEvent(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'max_participant' => 'required'
+        ]);
+
         $new_event = Event::create([
             'user_id' => auth()->user()->id,
             'name' => $request->input('name'),
@@ -69,6 +77,13 @@ class EventController extends Controller
     }
 
     public function inputEventRundown(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+
         $new_rundown = EventRundown::create([
             'event_id' => $request->input('event_id'),
             'name' => $request->input('name'),
@@ -85,6 +100,11 @@ class EventController extends Controller
     }
 
     public function inputEventWinner(Request $request) {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'rank' => 'required'
+        ]);
+
         $new_rundown = EventWinner::create([
             'event_id' => $request->input('event_id'),
             'user_id' => $request->input('winner'),

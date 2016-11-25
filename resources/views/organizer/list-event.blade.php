@@ -16,6 +16,7 @@
             <h5>{!! Session::get('message') !!}</h5>
         </div>
     @endif
+    @include('validation-errors')
     <div class="row">
         @if($events->count() == 0)
             <div class="text-center">
