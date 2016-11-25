@@ -62,11 +62,11 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
 
             $tbl->foreign('team_id')
             ->references('id')
-            ->on('team');
+            ->on('team')->onDelete('cascade');
         });
 
         Schema::create('event', function (Blueprint $tbl) {
@@ -81,7 +81,7 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
         });
 
         Schema::create('event_attendee', function (Blueprint $tbl) {
@@ -92,11 +92,11 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
 
             $tbl->foreign('event_id')
             ->references('id')
-            ->on('event');
+            ->on('event')->onDelete('cascade');
         });
 
         Schema::create('event_winner', function (Blueprint $tbl) {
@@ -108,11 +108,11 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
 
             $tbl->foreign('event_id')
             ->references('id')
-            ->on('event');
+            ->on('event')->onDelete('cascade');
         });
 
         Schema::create('event_rundown', function (Blueprint $tbl) {
@@ -126,7 +126,7 @@ class BepMigration extends Migration
 
             $tbl->foreign('event_id')
             ->references('id')
-            ->on('event');
+            ->on('event')->onDelete('cascade');
         });
 
         Schema::create('comment', function (Blueprint $tbl) {
@@ -138,11 +138,11 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
 
             $tbl->foreign('event_id')
             ->references('id')
-            ->on('event');
+            ->on('event')->onDelete('cascade');
         });
 
         Schema::create('rating', function (Blueprint $tbl) {
@@ -154,11 +154,11 @@ class BepMigration extends Migration
 
             $tbl->foreign('user_id')
             ->references('id')
-            ->on('user');
+            ->on('user')->onDelete('cascade');
 
             $tbl->foreign('event_id')
             ->references('id')
-            ->on('event');
+            ->on('event')->onDelete('cascade');
         });
     }
 
@@ -175,6 +175,7 @@ class BepMigration extends Migration
         Schema::drop('event_rundown');
         Schema::drop('event_winner');
         Schema::drop('event_attendee');
+        Schema::drop('team_member');
 
         Schema::drop('team');
         Schema::drop('event');

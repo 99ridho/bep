@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
             ['type' => 'Organizer']
         ];
 
-        DB::table('type')->insert($type);
+        //DB::table('type')->insert($type);
+        foreach ($type as $e) {
+            \App\Type::create($e);
+        }
 
         Model::reguard();
     }

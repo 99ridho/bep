@@ -13,7 +13,7 @@ class Event extends Model
     ];
 
     public function organizer() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function attendees() {

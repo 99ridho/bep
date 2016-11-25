@@ -12,14 +12,13 @@
 */
 
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
-
 Route::get('/login', ['uses' => 'GuestController@login', 'as' => 'login']);
 Route::get('/register', ['uses' => 'GuestController@register', 'as' => 'register']);
 
 Route::post('auth/login', ['uses' => 'AuthController@login', 'as' => 'auth_login']);
 Route::post('auth/register', ['uses' => 'AuthController@register', 'as' => 'auth_register']);
-Route::get('auth/logout', ['uses' => 'AuthController@logout', 'as'=>'auth_logout']);
 
+Route::get('auth/logout', ['uses' => 'AuthController@logout', 'as'=>'auth_logout']);
 Route::get('u/{username}', ['uses' => 'ProfileController@index', 'as' => 'user_profile']);
 
 Route::group(['middleware' => 'auth'], function(){
@@ -36,6 +35,11 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('manage_event/event/{id}/add_rundown', ['uses' => 'EventController@indexAddRundown', 'as' => 'organizer_add_rundown_event']);
         Route::post('manage_event/event/{id}/save_rundown', ['uses' => 'EventController@inputEventRundown', 'as' => 'organizer_save_new_rundown_event']);
+
+        Route::get('manage_event/event/{id}/add_winner', ['uses' => 'EventController@indexAddWinner', 'as' => 'organizer_add_winner_event']);
+        Route::post('manage_event/event/{id}/save_winner', ['uses' => 'EventController@inputEventWinner', 'as' => 'organizer_save_new_winner_event']);
     });
 });
+
+Route::get('event/{id}/detail', ['uses' => 'Organizer\EventController@indexEventDetail', 'as' => 'event_detail']);
 
