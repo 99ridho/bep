@@ -127,7 +127,18 @@
                     <h3 class="panel-title">Comments - ({{ $avg_rating }} avg. rating)</h3>
                 </div>
                 <div class="panel-body">
-                    list rating here
+                    <div class="list-group">
+                        @if($comments->count() == 0)
+                            <div class="text-center"><h5>No Comments.</h5></div>
+                        @else
+                            @foreach($comments as $c)
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">{{ $c->user->name }}</h4>
+                                    <p class="list-group-item-text">{{ $c->comment }}</p>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
                 <div class="panel-footer clearfix">
                     <form class="form-horizontal" style="margin-bottom: 0px;" method="POST" action="{{ route('save_comment', ['id' => $event_detail->id]) }}">

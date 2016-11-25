@@ -50,7 +50,7 @@ class EventController extends Controller
             $sum += $r->rating;
         }
 
-        return view('event-detail', ['status' => 'found', 'event_detail' => $event, 'comments' => $comments, 'avg_rating' => sprintf('%.1f', $sum / $ratings->count())]);
+        return view('event-detail', ['status' => 'found', 'event_detail' => $event, 'comments' => $comments, 'avg_rating' => ($ratings->count() != 0) ? sprintf('%.1f', $sum / $ratings->count()) : '0.0']);
     }
 
     public function indexAddWinner($id) {
