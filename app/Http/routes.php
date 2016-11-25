@@ -39,6 +39,16 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('manage_event/event/{id}/add_winner', ['uses' => 'EventController@indexAddWinner', 'as' => 'organizer_add_winner_event']);
         Route::post('manage_event/event/{id}/save_winner', ['uses' => 'EventController@inputEventWinner', 'as' => 'organizer_save_new_winner_event']);
     });
+
+    Route::group(['middleware' => 'team', 'namespace' => 'Team'], function(){
+        Route::get('manage_team', ['uses' => 'TeamController@manage', 'as' => 'team_manage_team']);
+        Route::get('manage_team/add', ['uses' => 'TeamController@indexAddTeam', 'as' => 'team_add_team']);
+        Route::post('manage_team/save', ['uses' => 'TeamController@addTeam', 'as' => 'team_save_new_team']);
+
+        Route::get('manage_team/team/{id}/edit', ['uses' => 'TeamController@indexEditTeam', 'as' => 'team_edit_team']);
+        Route::post('manage_team/team/{id}/save', ['uses' => 'TeamController@editTeam', 'as' => 'team_save_edited_team']);
+        Route::post('manage_team/team/{id}/save_player', ['uses' => 'TeamController@addPlayer', 'as' => 'team_save_player_to_team']);
+    });
 });
 
 Route::get('event/{id}/detail', ['uses' => 'Organizer\EventController@indexEventDetail', 'as' => 'event_detail']);

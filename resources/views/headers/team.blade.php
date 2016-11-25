@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('user_profile', [auth()->user()->username]) }}">Profile</a></li>
-                <li><a href="#">Manage Team</a></li>
+                <li><a href="{{ route('team_manage_team') }}">Manage Team</a></li>
                 <li><a href="{{ route('auth_logout') }}">Logout</a></li>
                 <!--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
