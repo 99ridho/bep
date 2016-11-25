@@ -44,10 +44,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('manage_team', ['uses' => 'TeamController@manage', 'as' => 'team_manage_team']);
         Route::get('manage_team/add', ['uses' => 'TeamController@indexAddTeam', 'as' => 'team_add_team']);
         Route::post('manage_team/save', ['uses' => 'TeamController@addTeam', 'as' => 'team_save_new_team']);
+        Route::get('manage_team/delete/{id}', ['uses' => 'TeamController@deleteTeam', 'as' => 'team_delete_team']);
 
         Route::get('manage_team/team/{id}/edit', ['uses' => 'TeamController@indexEditTeam', 'as' => 'team_edit_team']);
         Route::post('manage_team/team/{id}/save', ['uses' => 'TeamController@editTeam', 'as' => 'team_save_edited_team']);
-        Route::post('manage_team/team/{id}/save_player', ['uses' => 'TeamController@addPlayer', 'as' => 'team_save_player_to_team']);
+        Route::post('manage_team/team/{id}/save_athlete', ['uses' => 'TeamController@addPlayer', 'as' => 'team_save_player_to_team']);
+
+        Route::get('manage_team/team/{id}/list_athlete', ['uses' => 'TeamController@manageAthlete', 'as' => 'team_manage_athlete']);
+        Route::get('manage_team/team/athlete/{athlete_id}/delete', ['uses' => 'TeamController@deletePlayer', 'as' => 'team_delete_athlete']);
     });
 });
 

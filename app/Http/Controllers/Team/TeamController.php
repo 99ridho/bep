@@ -20,6 +20,11 @@ class TeamController extends Controller
         return view('team/list-team', ['teams' => $teams]);
     }
 
+    public function manageAthlete($id) {
+        $athletes = TeamAthlete::where('team_id', $id)->get();
+        return view('team/player-manage', ['athletes' => $athletes]);
+    }
+
     public function indexAddTeam() {
         return view('team/add-team');
     }
@@ -86,5 +91,25 @@ class TeamController extends Controller
             'title'=> 'Success!!!',
             'message'=>'Add player to team success'
         ]);
+    }
+
+    public function deletePlayer($id) {
+        TeamAthlete::destroy($id);
+
+        return redirect()->route('team_manage_athlete')->with([
+            'status'=>'success',
+            'title'=> 'Success!!!',
+            'message'=>'Delete athlete success'
+        ]);;
+    }
+
+    public function deleteTeam($id) {
+        Team::destroy($id);
+
+        return redirect()->route('team_manage_team')->with([
+            'status'=>'success',
+            'title'=> 'Success!!!',
+            'message'=>'Delete event success'
+        ]);;
     }
 }

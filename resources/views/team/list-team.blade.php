@@ -44,8 +44,8 @@
                                 <td>
                                     <a class="btn btn-default btn-sm" href="#"><span class="glyphicon glyphicon-info-sign"></span></a>
                                     <a class="btn btn-info btn-sm" href="{{ route('team_edit_team', [$item->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="btn btn-warning btn-sm" href="#"><span class="glyphicon glyphicon-user"></span></a>
-                                    <a class="btn btn-danger btn-sm" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a class="btn btn-warning btn-sm" href="{{ route('team_manage_athlete', [$item->id]) }}"><span class="glyphicon glyphicon-user"></span></a>
+                                    <a class="btn btn-danger btn-sm" href="{{ route('team_delete_team', [$item->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
                         @endforeach
