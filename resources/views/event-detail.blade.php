@@ -140,33 +140,35 @@
                         @endif
                     </div>
                 </div>
-                <div class="panel-footer clearfix">
-                    <form class="form-horizontal" style="margin-bottom: 0px;" method="POST" action="{{ route('save_comment', ['id' => $event_detail->id]) }}">
-                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                        <input type="hidden" name="event_id" value="{{ $event_detail->id }}">
-                        <div class="form-group">
-                            <div class="pull-left">
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                                        <input type="text" class="form-control" placeholder="write comment here..." name="comment" >
+                @if(Auth::check())
+                    <div class="panel-footer clearfix">
+                        <form class="form-horizontal" style="margin-bottom: 0px;" method="POST" action="{{ route('save_comment', ['id' => $event_detail->id]) }}">
+                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                            <input type="hidden" name="event_id" value="{{ $event_detail->id }}">
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                                            <input type="text" class="form-control" placeholder="write comment here..." name="comment" >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
-                                        <input type="number" min="0" max="5" class="form-control" placeholder="rating" name="rating" value="0">
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                                            <input type="number" min="0" max="5" class="form-control" placeholder="rating" name="rating" value="0">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 ">
-                                    <div class="input-group" style="margin: 0px auto;">
-                                        <input type="submit" class="btn btn-info" value="Post Comment">
+                                    <div class="col-md-2 ">
+                                        <div class="input-group" style="margin: 0px auto;">
+                                            <input type="submit" class="btn btn-info" value="Post Comment">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     @endif
