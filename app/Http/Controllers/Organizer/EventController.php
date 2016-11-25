@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Organizer;
 
+use App\Comment;
 use App\Event;
 use App\EventAttendee;
 use App\EventRundown;
+use App\Rating;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,7 +41,16 @@ class EventController extends Controller
         if ($event == null)
             return view('event-detail', ['status' => 'not_found']);
 
-        return view('event-detail', ['status' => 'found', 'event_detail' => $event]);
+        $comments = Comment::where('event_id', $id)->get();
+        $ratings = Rating::where('event_id', $id)->get();
+
+        $sum = 0;
+
+        foreach ($ratings as $r) {
+            $sum += $r->rating;
+        }
+
+        return view('event-detail', ['status' => 'found', 'event_detail' => $event, 'comments' => $comments, 'avg_rating' => sprintf('%.1f', $sum / $ratings->count())]);
     }
 
     public function indexAddWinner($id) {

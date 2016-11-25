@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('event/{id}/register', ['uses' => 'Organizer\EventController@registerToEvent', 'as' => 'register_to_event']);
 
+    Route::post('event/{id}/save_comment', ['uses' => 'CommentRatingController@save', 'as' => 'save_comment']);
+
     Route::group(['middleware' => 'organizer', 'namespace' => 'Organizer'], function(){
        Route::get('manage_event', ['uses' => 'EventController@manage', 'as' => 'organizer_manage_event']);
         Route::get('manage_event/add', ['uses' => 'EventController@indexAddEvent', 'as' => 'organizer_add_event']);
