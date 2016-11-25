@@ -128,4 +128,35 @@ class EventController extends Controller
         ]);;
     }
 
+    public function registerToEvent($id) {
+        $attendee_check = EventAttendee::where('event_id', $id)
+            ->where('user_id', auth()->user()->id)->first();
+        $attendee_count = EventAttendee::where('event_id', $id)->count();
+
+        if ($attendee_count == Event::find($id)->max_participant)
+            return redirect()->route('event_detail', ['id' => $id])->with([
+                'status'=>'danger',
+                'title'=> 'Failed!!!',
+                'message'=>'Event full!'
+            ]);
+
+        if ($attendee_check != null)
+            return redirect()->route('event_detail', ['id' => $id])->with([
+                'status'=>'danger',
+                'title'=> 'Failed!!!',
+                'message'=>'You\'re already registered to event'
+            ]);
+
+        $ins_attendee = EventAttendee::create([
+           'user_id' => auth()->user()->id,
+           'event_id' => $id
+        ]);
+
+        return redirect()->route('event_detail', ['id' => $id])->with([
+            'status'=>'success',
+            'title'=> 'Failed!!!',
+            'message'=>'Success registered to event'
+        ]);
+    }
+
 }

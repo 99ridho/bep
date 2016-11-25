@@ -1,6 +1,12 @@
 @extends('layout')
 
 @section('content')
+    @if(Session::has('status'))
+        <div class="alert alert-{{Session::get('status')}}" role="alert">
+            <strong>{{Session::get('title')}}</strong><br/>
+            <h5>{!! Session::get('message') !!}</h5>
+        </div>
+    @endif
     @if($status == 'not_found')
         <div class="alert alert-danger" role="alert">
             <h3>Event not found</h3>
@@ -44,12 +50,14 @@
                     </div>
                 </div>
                 @if(Auth::check())
-                    @if($event_detail->user_id != auth()->user()->id && auth()->user()->type_id != 4)
-                        <div class="panel-footer clearfix">
-                            <div class="pull-right">
-                                <a href="#" class="btn btn-success">Register to Event</a>
+                    @if(strtotime($event_detail->end_date) > strtotime(date('Y-m-d')))
+                        @if($event_detail->user_id != auth()->user()->id && auth()->user()->type_id != 4)
+                            <div class="panel-footer clearfix">
+                                <div class="pull-right">
+                                    <a href="{{ route('register_to_event', ['id' => $event_detail->id]) }}" class="btn btn-success">Register to Event</a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 @endif
             </div>
@@ -89,16 +97,20 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Attendees</h3>
-                </div>
-                <div class="panel-body">
+        @if(Auth::check())
+            @if($event_detail->user_id == auth()->user()->id && auth()->user()->type_id == 4)
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Attendees</h3>
+                        </div>
+                        <div class="panel-body">
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        @endif
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
