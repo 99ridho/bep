@@ -7,6 +7,7 @@ $ git clone https://github.com/99ridho/bep.git
 $ cp .env.example .env
 $ composer install
 $ php artisan key:generate
+$ php artisan db:seed
 $ php artisan serve
 ```
 
