@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
+Route::get('/about_us', ['uses' => 'HomeController@aboutUs', 'as' => 'about_us']);
 Route::get('/login', ['uses' => 'GuestController@login', 'as' => 'login']);
 Route::get('/register', ['uses' => 'GuestController@register', 'as' => 'register']);
 

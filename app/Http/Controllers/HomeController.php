@@ -21,4 +21,8 @@ class HomeController extends Controller
 
         return view('home', ['past_events' => $past_events, 'ongoing_events' => $ongoing_events, 'next_events' => $next_events]);
     }
+
+    public function aboutUs() {
+        return view('about-us');
+    }
 }
