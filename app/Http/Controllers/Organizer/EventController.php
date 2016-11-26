@@ -6,6 +6,7 @@ use App\Comment;
 use App\Event;
 use App\EventAttendee;
 use App\EventRundown;
+use App\EventWinner;
 use App\Rating;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,8 @@ class EventController extends Controller
 
         $comments = Comment::where('event_id', $id)->get();
         $ratings = Rating::where('event_id', $id)->get();
+        $winners = EventWinner::where('event_id', $id)->get();
+        $attendees = EventAttendee::where('event_id', $id)->get();
 
         $sum = 0;
 
@@ -50,7 +53,14 @@ class EventController extends Controller
             $sum += $r->rating;
         }
 
-        return view('event-detail', ['status' => 'found', 'event_detail' => $event, 'comments' => $comments, 'avg_rating' => ($ratings->count() != 0) ? sprintf('%.1f', $sum / $ratings->count()) : '0.0']);
+        return view('event-detail', [
+            'status' => 'found',
+            'event_detail' => $event,
+            'attendees' => $attendees,
+            'winners' => $winners,
+            'comments' => $comments,
+            'avg_rating' => ($ratings->count() != 0) ? sprintf('%.1f', $sum / $ratings->count()) : '0.0'
+        ]);
     }
 
     public function indexAddWinner($id) {

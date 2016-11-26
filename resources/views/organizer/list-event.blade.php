@@ -31,6 +31,7 @@
                         <th>Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Participant Count</th>
                         <th>Max Participant</th>
                         <th>Action</th>
                     </tr>
@@ -42,6 +43,7 @@
                             <td>{{ $e->name }}</td>
                             <td>{{ $e->start_date }}</td>
                             <td>{{ $e->end_date }}</td>
+                            <td>{{ App\EventAttendee::where('event_id', $e->id)->count() }}</td>
                             <td>{{ $e->max_participant }}</td>
                             <td>
                                 <a class="btn btn-default btn-sm" href="{{ route('event_detail', [$e->id]) }}"><span class="glyphicon glyphicon-info-sign"></span></a>

@@ -105,7 +105,17 @@
                             <h3 class="panel-title">Attendees</h3>
                         </div>
                         <div class="panel-body">
-
+                            <div class="list-group">
+                                @if($attendees->count() == 0)
+                                    <div class="text-center"><h5>No Attendees</h5></div>
+                                @else
+                                    @foreach($attendees as $a)
+                                        <a href="{{ route('user_profile', [$a->user->name]) }}" class="list-group-item">
+                                            {{ $a->user->name }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +127,17 @@
                     <h3 class="panel-title">Winners</h3>
                 </div>
                 <div class="panel-body">
-
+                    <div class="list-group">
+                        @if($winners->count() == 0)
+                            <div class="text-center"><h5>No Winners</h5></div>
+                        @else
+                            @foreach($winners as $w)
+                                <a href="{{ route('user_profile', [$w->user->name]) }}" class="list-group-item">
+                                    {{ $w->user->name }}
+                                </a>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

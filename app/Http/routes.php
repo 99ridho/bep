@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('manage_team/team/{id}/list_athlete', ['uses' => 'TeamController@manageAthlete', 'as' => 'team_manage_athlete']);
         Route::get('manage_team/team/athlete/{athlete_id}/delete', ['uses' => 'TeamController@deletePlayer', 'as' => 'team_delete_athlete']);
     });
+
+    Route::get('u/{username}/attended_events', ['uses' => 'ScheduleController@getSchedule', 'as' => 'list_attended_event']);
 });
 
 Route::get('event/{id}/detail', ['uses' => 'Organizer\EventController@indexEventDetail', 'as' => 'event_detail']);
