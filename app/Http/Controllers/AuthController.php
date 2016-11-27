@@ -34,8 +34,7 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required',
             'email' => 'required|email',
-            'name' => 'required',
-            'type_id' => 'required'
+            'name' => 'required'
         ]);
 
         $cek = User::where('username', $r->input('username'))->count();

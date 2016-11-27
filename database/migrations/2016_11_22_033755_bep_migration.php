@@ -49,9 +49,14 @@ class BepMigration extends Migration
 
         Schema::create('team', function (Blueprint $tbl) {
             $tbl->increments('id');
+            $tbl->integer('user_id')->unsigned();
             $tbl->string('name');
             $tbl->string('description');
             $tbl->timestamps();
+
+            $tbl->foreign('user_id')
+            ->references('id')
+            ->on('user')->onDelete('cascade');
         });
 
         Schema::create('team_member', function (Blueprint $tbl) {

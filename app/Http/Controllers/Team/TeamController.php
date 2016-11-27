@@ -16,7 +16,7 @@ class TeamController extends Controller
     // GET
 
     public function manage() {
-        $teams = Team::all();
+        $teams = Team::where('user_id', auth()->user()->id)->get();
         return view('team/list-team', ['teams' => $teams]);
     }
 
@@ -44,6 +44,7 @@ class TeamController extends Controller
         ]);
 
         $new_team = Team::create([
+            'user_id' => auth()->user()->id,
             'name' => $request->input('name'),
             'description' => $request->input('description')
         ]);

@@ -122,9 +122,15 @@ class EventController extends Controller
 
     public function inputEventWinner(Request $request) {
         $this->validate($request, [
-            'user_id' => 'required',
             'rank' => 'required'
         ]);
+
+        if ($request->input('winner') == -1)
+            return redirect()->route('organizer_add_winner_event')->with([
+                'status'=>'danger',
+                'title'=> 'Failed!!!',
+                'message'=>'Failed to add winner'
+            ]);
 
         $new_rundown = EventWinner::create([
             'event_id' => $request->input('event_id'),
