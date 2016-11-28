@@ -18,6 +18,6 @@ class EventWinner extends Model
     }
 
     public function winner() {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

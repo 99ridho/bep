@@ -110,7 +110,7 @@
                                     <div class="text-center"><h5>No Attendees</h5></div>
                                 @else
                                     @foreach($attendees as $a)
-                                        <a href="{{ route('user_profile', [$a->user->name]) }}" class="list-group-item">
+                                        <a href="{{ route('user_profile', [$a->user->username]) }}" class="list-group-item">
                                             {{ $a->user->name }}
                                         </a>
                                     @endforeach
