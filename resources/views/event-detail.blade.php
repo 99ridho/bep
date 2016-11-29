@@ -132,8 +132,8 @@
                             <div class="text-center"><h5>No Winners</h5></div>
                         @else
                             @foreach($winners as $w)
-                                <a href="{{ route('user_profile', [$w->user->name]) }}" class="list-group-item">
-                                    {{ $w->user->name }}
+                                <a href="{{ route('user_profile', [$w->user->username]) }}" class="list-group-item">
+                                    {{ $w->user->name }} - {{ $w->rank }}
                                 </a>
                             @endforeach
                         @endif

@@ -138,7 +138,7 @@ class EventController extends Controller
             'rank' => $request->input('rank')
         ]);
 
-        return redirect()->route('organizer_add_winner_event')->with([
+        return redirect()->route('organizer_add_winner_event', ['id' => $request->input('event_id')])->with([
             'status'=>'success',
             'title'=> 'Success!!!',
             'message'=>'Add event winner success'
