@@ -23,7 +23,7 @@ class EventController extends Controller
     }
 
     public function manage() {
-        $all = Event::all();
+        $all = Event::where('user_id', auth()->user()->id)->get();
         return view('organizer/list-event', ['events' => $all]);
     }
 
@@ -113,7 +113,7 @@ class EventController extends Controller
             'end_date' => $request->input('end_date')
         ]);
 
-        return redirect()->route('organizer_add_rundown_event')->with([
+        return redirect()->route('organizer_add_rundown_event', ['id' => $request->input('event_id')])->with([
             'status'=>'success',
             'title'=> 'Success!!!',
             'message'=>'Add event rundown success'
@@ -126,7 +126,7 @@ class EventController extends Controller
         ]);
 
         if ($request->input('winner') == -1)
-            return redirect()->route('organizer_add_winner_event')->with([
+            return redirect()->route('organizer_add_winner_event', ['id' => $request->input('event_id')])->with([
                 'status'=>'danger',
                 'title'=> 'Failed!!!',
                 'message'=>'Failed to add winner'

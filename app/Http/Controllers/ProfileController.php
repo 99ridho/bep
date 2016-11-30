@@ -7,19 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\EventWinner;
 
 class ProfileController extends Controller
 {
     public function index(Request $r, $username) {
         $user = User::where('username', $username)->first();
+        $achievements = EventWinner::where('user_id', $user->id)->get();
 
         if ($user == null) {
             return view('profile/athlete', ['data' => $user, 'status' => 'not_found']);
         } else {
             if ($user->type->id == 3) {
-                return view('profile/athlete', ['data' => $user, 'status' => 'found']);
+                return view('profile/athlete', ['achievements' => $achievements, 'data' => $user, 'status' => 'found']);
             } else if ($user->type->id == 2) {
-                return view('profile/team', ['data' => $user, 'status' => 'found']);
+                return view('profile/team', ['achievements' => $achievements, 'data' => $user, 'status' => 'found']);
             } else if ($user->type->id == 4) {
                 return view('profile/organizer', ['data' => $user, 'status' => 'found']);
             }

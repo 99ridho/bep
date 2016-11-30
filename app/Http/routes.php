@@ -64,5 +64,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('event/{id}/detail', ['uses' => 'Organizer\EventController@indexEventDetail', 'as' => 'event_detail']);
 
+Route::get('all_events', ['uses' => 'HomeController@index', 'as' => 'all-events']);
+
 Route::get('/test', ['uses' => 'HomeController@events']);
 

@@ -72,6 +72,11 @@
                     <h3 class="panel-title">Achievement</h3>
                 </div>
                 <div class="panel-body">
+                    <div class="list-group">
+                        @foreach($achievements as $e)
+                            <div class="list-group-item">{{ $e->event->name }} - {{ $e->rank }}</div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
