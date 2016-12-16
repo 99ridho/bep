@@ -47,7 +47,7 @@
                             <td>{{ $e->max_participant }}</td>
                             <td>
                                 <a class="btn btn-default btn-sm" href="{{ route('event_detail', [$e->id]) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a class="btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a class="btn btn-info btn-sm" href="{{ route('organizer_edit_event', ['id' => $e->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a class="btn btn-warning btn-sm" href="{{ route('organizer_add_rundown_event', [$e->id]) }}"><span class="glyphicon glyphicon-calendar"></span></a>
                                 <a class="btn btn-warning btn-sm" href="{{ route('organizer_add_winner_event', [$e->id]) }}"><span class="glyphicon glyphicon-user"></span></a>
                                 <a class="btn btn-danger btn-sm" href="{{ route('organizer_delete_event', [$e->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
